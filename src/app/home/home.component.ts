@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { incremenet, decrement, reset } from '../state/counter.actions';
 
 // import * as pouchDB from 'pouchdb';
 @Component({
@@ -8,12 +11,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   pouchdb: any;
-  constructor() {
+  count$: Observable<number>;
+  constructor(private store: Store<{ count: number }>) {
+    // TODO: This stream will connect to the current store `count` state
+    this.count$ = store.select('count');
     // this.pouchdb = new pouchDB('todo');
   }
 
   ngOnInit(): void {
     // this.addTodo('Bill payment');
+  }
+
+  increment() {
+    // TODO: Dispatch an increment action
+    this.store.dispatch(incremenet());
+    console.log(this.store);
+  }
+
+  decrement() {
+    // TODO: Dispatch a decrement action
+    this.store.dispatch(decrement());
+  }
+
+  reset() {
+    // TODO: Dispatch a reset action
+    this.store.dispatch(reset());
   }
 
   // addToDo() {

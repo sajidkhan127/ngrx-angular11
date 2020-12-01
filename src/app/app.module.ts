@@ -5,6 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './state/counter.reducer';
+// import { reducers, metaReducers } from './reducers';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -12,6 +16,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSidenavModule,
+    StoreModule.forRoot({ count: counterReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent],

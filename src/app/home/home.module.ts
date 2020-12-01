@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { PinchZoomModule } from 'ngx-pinch-zoom';
-
+import { MatGridListModule } from '@angular/material/grid-list';
 @NgModule({
   declarations: [HomeComponent],
   imports: [
@@ -19,6 +19,7 @@ import { PinchZoomModule } from 'ngx-pinch-zoom';
     PinchZoomModule,
     MatCardModule,
     MatButtonModule,
+    MatGridListModule,
   ],
 })
 export class HomeModule {}
