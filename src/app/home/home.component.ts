@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { incremenet, decrement, reset } from '../state/counter.actions';
+import * as TodoActions from '../state/todo.actions';
+import { Todo } from '../state/todo.model';
+import { TodoState } from '../state/todo.state';
 
 // import * as pouchDB from 'pouchdb';
 @Component({
@@ -12,9 +15,15 @@ import { incremenet, decrement, reset } from '../state/counter.actions';
 export class HomeComponent implements OnInit {
   pouchdb: any;
   count$: Observable<number>;
-  constructor(private store: Store<{ count: number }>) {
+  todos$: Observable<any>;
+
+  constructor(
+    private store: Store<{ count: number }>,
+    private todoStore: Store<{ todo: Todo }>
+  ) {
     // TODO: This stream will connect to the current store `count` state
     this.count$ = store.select('count');
+    this.todos$ = todoStore.select('todo');
     // this.pouchdb = new pouchDB('todo');
   }
 
@@ -38,6 +47,15 @@ export class HomeComponent implements OnInit {
     this.store.dispatch(reset());
   }
 
+  addTodo(task: string) {
+    this.todoStore.dispatch(
+      new TodoActions.AddTodo({
+        id: Math.random(),
+        task: task,
+        complete: false,
+      })
+    );
+  }
   // addToDo() {
   //   this.store.dispatch(
   //     new AddToDo({

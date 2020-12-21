@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './state/counter.reducer';
+import { todoReducer } from './state/tood.reducer';
 // import { reducers, metaReducers } from './reducers';
 
 @NgModule({
@@ -16,7 +17,7 @@ import { counterReducer } from './state/counter.reducer';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSidenavModule,
-    StoreModule.forRoot({ count: counterReducer }),
+    StoreModule.forRoot({ count: counterReducer, todo: todoReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent],

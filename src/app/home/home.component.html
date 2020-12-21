@@ -1,9 +1,14 @@
-<mat-grid-list cols="2" rowHeight="2:1">
+<mat-grid-list cols="2">
     <mat-grid-tile>
         <h3>list</h3>
+        <ul>
+            <li *ngFor="let item of todos$ | async">
+                <a>{{ item.task }}</a>
+            </li>
+        </ul>
     </mat-grid-tile>
     <mat-grid-tile>
-        <mat-card>
+        <!-- <mat-card>
             <mat-card-header>
                 <mat-card-title>
                     <h2>Counter NgRx</h2>
@@ -17,8 +22,8 @@
                     <button mat-button color="primary" (click)="reset()">Reset</button>
                 </div>
             </mat-card-content>
-        </mat-card>
-        <br>
+        </mat-card> -->
+
         <mat-card>
             <mat-card-header>
                 <mat-card-title>
@@ -27,10 +32,10 @@
             </mat-card-header>
             <mat-card-content>
                 <mat-form-field>
-                    <input matInput>
+                    <input matInput #task>
                 </mat-form-field>
-                <div fxLayout="row" fxLayoutAlign="end">
-                    <button mat-button color="primary">Add To Do</button>
+                <div fxLayout="row">
+                    <button mat-button color="primary" (click)="addTodo(task.value)">Add To Do</button>
                 </div>
             </mat-card-content>
         </mat-card>
